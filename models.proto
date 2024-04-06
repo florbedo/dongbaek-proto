@@ -25,12 +25,10 @@ message PbGoal {
 
 message PbRepeatInfo {
   oneof value {
-    PbUnrepeated unrepeated = 1;
-    PbPeriodic periodic_repeat = 2;
+    PbPeriodic periodic_repeat = 1;
+    // TODO: Add more repeat types. (e.g. weekly some days, monthly)
   }
 }
-
-message PbUnrepeated {}
 
 message PbPeriodic {
   google.protobuf.Duration period_duration = 1;
@@ -54,4 +52,12 @@ message PbQuantityProgress {
 message PbDurationProgress {
   google.protobuf.Duration duration = 1;
   optional google.protobuf.Timestamp ongoing_start_timestamp = 2;
+}
+
+message PbToDo {
+  string id = 1;
+  string title = 2;
+  google.protobuf.Timestamp start_timestamp = 3;
+  optional google.protobuf.Timestamp due_timestamp = 4;
+  optional google.protobuf.Timestamp finish_timestamp = 5;
 }

@@ -70,3 +70,37 @@ message ReplaceProgressResponse {
   string schedule_id = 1;
   google.protobuf.Timestamp start_timestamp = 2;
 }
+
+
+service ToDoService {
+  rpc CreateToDo (CreateToDoRequest) returns (CreateToDoResponse);
+  rpc GetToDos (GetToDosRequest) returns (GetToDosResponse);
+  rpc ReplaceToDo (ReplaceToDoRequest) returns (ReplaceToDoResponse);
+  rpc DeleteToDo (DeleteToDoRequest) returns (DeleteToDoResponse);
+}
+
+message CreateToDoRequest {
+  string title = 1;
+  string schedule_id = 2;
+  google.protobuf.Timestamp due_timestamp = 3;
+}
+message CreateToDoResponse {
+  string todo_id = 1;
+}
+
+message GetToDosRequest {}
+message GetToDosResponse {
+  repeated PbToDo todos = 1;
+}
+
+message ReplaceToDoRequest {
+  PbToDo todo = 1;
+}
+message ReplaceToDoResponse {
+  string todo_id = 1;
+}
+
+message DeleteToDoRequest {
+  string todo_id = 1;
+}
+message DeleteToDoResponse {}
